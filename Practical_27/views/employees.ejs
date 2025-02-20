@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees List</title>
+</head>
+<body>
+    <h2>Employees List</h2>
+    <a href="/employees/new">Add Employee</a>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Skills</th>
+            <th>Actions</th>
+        </tr>
+        <% employees.forEach(employee => { %>
+        <tr>
+            <td><%= employee.name %></td>
+            <td><%= employee.email %></td>
+            <td><%= employee.dob.toDateString() %></td>
+            <td><%= employee.gender %></td>
+            <td><%= employee.skills.join(", ") %></td>
+            <td>
+                <a href="/employees/edit/<%= employee._id %>">Edit</a> |
+                <a href="/employees/delete/<%= employee._id %>" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+</body>
+</html>

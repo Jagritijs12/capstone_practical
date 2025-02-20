@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+</head>
+<body>
+    <h2><%= employee._id ? "Edit Employee" : "Add Employee" %></h2>
+    <form action="<%= employee._id ? '/employees/update/' + employee._id : '/employees' %>" method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" value="<%= employee.name || '' %>" required><br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="<%= employee.email || '' %>" required><br><br>
+
+        <label>Date of Birth:</label>
+        <input type="date" name="dob" value="<%= employee.dob ? employee.dob.toISOString().split('T')[0] : '' %>" required><br><br>
+
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="Male" <%= employee.gender === 'Male' ? 'checked' : '' %> required> Male
+        <input type="radio" name="gender" value="Female" <%= employee.gender === 'Female' ? 'checked' : '' %> required> Female
+        <input type="radio" name="gender" value="Other" <%= employee.gender === 'Other' ? 'checked' : '' %> required> Other<br><br>
+
+        <label>Skills:</label>
+        <input type="checkbox" name="skills" value="JavaScript" <%= employee.skills && employee.skills.includes('JavaScript') ? 'checked' : '' %>> JavaScript
+        <input type="checkbox" name="skills" value="Python" <%= employee.skills && employee.skills.includes('Python') ? 'checked' : '' %>> Python
+        <input type="checkbox" name="skills" value="Java" <%= employee.skills && employee.skills.includes('Java') ? 'checked' : '' %>> Java<br><br>
+
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
